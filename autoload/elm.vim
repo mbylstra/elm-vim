@@ -376,3 +376,36 @@ function! s:ExecuteInRoot(cmd) abort
 
 	return l:out
 endfunction
+
+function! elm#Lint() abort
+
+	" let l:reports = s:ExecuteInRoot(l:command)
+
+    let currentBufferName = bufname("%")
+    let l:command = "elm-make --warn " . currentBufferName . " --output /dev/null 2>&1" 
+    " let l:elmMakeOutput = system("elm-make " . currentBufferName . " --output /dev/null 2>&1")
+	let l:elmMakeOutput = s:ExecuteInRoot(l:command)
+    let i = bufnr("$")
+    let g:elmBufferExists = 0
+    while (i >= 1)
+        if (getbufvar(i, "&filetype") == "elmmakeoutput")
+            let g:elmBufferExists = 1
+        endif
+        let i-=1
+    endwhile
+        
+    if !g:elmBufferExists
+        rightbelow 80vsplit __ElmMake__
+        setlocal filetype=elmmakeoutput
+        setlocal buftype=nofile
+        let g:elmMakeWindowId = win_getid()
+    endif
+
+    if win_gotoid(g:elmMakeWindowId)
+        normal! ggdG
+        call append(0, split(l:elmMakeOutput, '\v\n'))
+        normal! gg
+        wincmd w
+    endif
+endfunction
+

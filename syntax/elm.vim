@@ -5,7 +5,7 @@ if exists('b:current_syntax')
 endif
 
 syn keyword elmReservedWord as let in port case of if then else
-syn keyword elmHtmlElement div ul li span p a button table tr td th thead tbody dl dd dt header aside article h1 h2 h3 h4 h5 h6 hr pre blockquote code em strong sub sup ol img iframe input textarea select option section nav footer address main_ body figure figurecaption caption colgroup col tfoot fieldset legend label datalist optgroup keygen cite dfn abbr
+syn keyword elmHtmlElement div ul li span p a button table tr td th thead tbody dl dd dt header aside article h1 h2 h3 h4 h5 h6 hr pre blockquote code em strong sub sup ol img iframe input textarea select option section nav footer address main_ body figure figurecaption caption colgroup col tfoot fieldset legend label datalist optgroup keygen cite dfn abbr text
 
 " Comments
 syn keyword elmTodo TODO FIXME XXX contained
@@ -25,7 +25,7 @@ syn match elmFloat "\(\<\d\+\.\d\+\>\)"
 syn match elmValueConstructor "\v<[A-Z][a-zA-Z0-9_]*" contained
 syn match elmVariable "\v[ \.][a-z][a-zA-Z0-9_]*" contained
 
-syn match elmInfixFunction "\v\|\>|\<\||\>\>|\<\<|\+\+|\=\=|\/\=|\<\=|\>\=|\<|\>|\&\&|\|\||\+|\-|\*|\/|\^|\/\/|\%|\!|\(\+\+\)"
+syn match elmInfixFunction "\v\|\>|\<\||\>\>|\<\<|\+\+|\=\=|\/\=|\<\=|\>\=|\<|\>|\&\&|\|\||\+|\-|\*|\/|\^|\/\/|\%|\!|\(\+\+\)|\:\:"
 syn match elmFunctionDefinitionSymbols "\v(\-\>|\\)" contained
 syn match elmViewFunction "\v<\w*[vV]iew\w*>"
 syn region elmFunctionDefinition  matchgroup=elmFunctionDefinitionName start="[a-z].*=" end="\v^([a-z-{])@=" contains=elmInt,elmString,elmHtmlElement,elmReservedWord,elmInfixFunction,elmFunctionDefinitionSymbols,elmLineComment,elmComment,elmValueConstructor,elmModuleQualifier,elmViewFunction

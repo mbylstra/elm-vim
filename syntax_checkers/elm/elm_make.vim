@@ -1,4 +1,4 @@
-" syntastic syntax checker
+" " syntastic syntax checker
 
 if exists('g:loaded_syntastic_elm_elm_make_checker')
     finish
