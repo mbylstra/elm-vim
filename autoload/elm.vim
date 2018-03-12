@@ -378,12 +378,8 @@ function! s:ExecuteInRoot(cmd) abort
 endfunction
 
 function! elm#Lint() abort
-
-	" let l:reports = s:ExecuteInRoot(l:command)
-
-    let currentBufferName = bufname("%")
-    let l:command = "elm-make --warn " . currentBufferName . " --output /dev/null 2>&1" 
-    " let l:elmMakeOutput = system("elm-make " . currentBufferName . " --output /dev/null 2>&1")
+    let currentBufferPath = expand('%:p')
+    let l:command = "elm-make --warn " . currentBufferPath . " --output /dev/null 2>&1" 
 	let l:elmMakeOutput = s:ExecuteInRoot(l:command)
     let i = bufnr("$")
     let g:elmBufferExists = 0
