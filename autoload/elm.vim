@@ -331,14 +331,13 @@ function! elm#Test() abort
 		return
 	endif
 
-	if match(getline(1, '$'), 'consoleRunner') < 0
-		let l:out = s:ExecuteInRoot('elm-test')
-		call elm#util#EchoSuccess('elm-test', l:out)
-	else
-		let l:filepath = shellescape(expand('%:p'))
-		let l:out = s:ExecuteInRoot('elm-test ' . l:filepath)
-		call elm#util#EchoSuccess('elm-test', l:out)
-	endif
+	" if match(getline(1, '$'), 'consoleRunner') < 0
+	"     let l:out = s:ExecuteInRoot('elm-test')
+	"     call elm#util#EchoSuccess('elm-test', l:out)
+	" else
+    let l:filepath = shellescape(expand('%:p'))
+    let l:out = s:ExecuteInRoot('elm-test ' . l:filepath)
+    call elm#util#EchoSuccess('elm-test', l:out)
 endf
 
 " Returns the closest parent with an elm-package.json file.
