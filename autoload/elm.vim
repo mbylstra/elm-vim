@@ -336,8 +336,9 @@ function! elm#Test() abort
 	"     call elm#util#EchoSuccess('elm-test', l:out)
 	" else
     let l:filepath = shellescape(expand('%:p'))
+    call elm#DisplayInElmWindow("Running tests...")
     let l:out = s:ExecuteInRoot('elm-test ' . l:filepath)
-    " call elm#util#EchoSuccess('elm-test', l:out)
+    " call elm#util#EchoSuccess('elm-test', l:out) "the old way
     call elm#DisplayInElmWindow(l:out)
 endf
 
