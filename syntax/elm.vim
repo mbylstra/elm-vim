@@ -27,7 +27,7 @@ syn match elmVariable "\v[ \.][a-z][a-zA-Z0-9_]*" contained
 
 syn match elmInfixFunction "\v\|\>|\<\||\>\>|\<\<|\+\+|\=\=|\/\=|\<\=|\>\=|\<|\>|\&\&|\|\||\+|\-|\*|\/|\^|\/\/|\%|\!|\(\+\+\)|\:\:"
 syn match elmFunctionDefinitionSymbols "\v(\-\>|\\)" contained
-syn match elmViewFunction "\v<\w*[vV]iew\w*>"
+" syn match elmViewFunction "\v<\w*view\w*>"
 syn region elmFunctionDefinition  matchgroup=elmFunctionDefinitionName start="[a-z].*=" end="\v^([a-z-{])@=" contains=elmInt,elmString,elmHtmlElement,elmReservedWord,elmInfixFunction,elmFunctionDefinitionSymbols,elmLineComment,elmComment,elmValueConstructor,elmModuleQualifier,elmViewFunction
 syn match elmTypeVariable "\v<[a-z][a-zA-Z0-9_]*" contained
 syn match elmType "\v<[A-Z][a-zA-Z0-9_]*" contained
