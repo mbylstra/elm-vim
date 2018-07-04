@@ -380,7 +380,7 @@ endfunction
 
 function! elm#Lint() abort
     let currentBufferPath = expand('%:p')
-    let l:command = "elm-make --warn " . currentBufferPath . " --output /dev/null 2>&1" 
+    let l:command = "elm-make --warn --yes " . currentBufferPath . " --output /dev/null 2>&1"
 	let l:elmMakeOutput = s:ExecuteInRoot(l:command)
     call elm#DisplayInElmWindow(l:elmMakeOutput)
 endfunction
@@ -394,7 +394,7 @@ function! elm#DisplayInElmWindow(contents) abort
         endif
         let i-=1
     endwhile
-        
+
     if !g:elmBufferExists
         rightbelow 80vsplit WhatElmSaid
         setlocal filetype=elmmakeoutput
