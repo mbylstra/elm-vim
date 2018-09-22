@@ -331,14 +331,15 @@ function! elm#Test() abort
 		return
 	endif
 
-	if match(getline(1, '$'), 'consoleRunner') < 0
-		let l:out = s:ExecuteInRoot('elm-test')
-		call elm#util#EchoSuccess('elm-test', l:out)
-	else
-		let l:filepath = shellescape(expand('%:p'))
-		let l:out = s:ExecuteInRoot('elm-test ' . l:filepath)
-		call elm#util#EchoSuccess('elm-test', l:out)
-	endif
+	" if match(getline(1, '$'), 'consoleRunner') < 0
+	"     let l:out = s:ExecuteInRoot('elm-test')
+	"     call elm#util#EchoSuccess('elm-test', l:out)
+	" else
+    let l:filepath = shellescape(expand('%:p'))
+    call elm#DisplayInElmWindow("Running tests...")
+    let l:out = s:ExecuteInRoot('elm-test ' . l:filepath)
+    " call elm#util#EchoSuccess('elm-test', l:out) "the old way
+    call elm#DisplayInElmWindow(l:out)
 endf
 
 " Returns the closest parent with an elm-package.json file.
@@ -379,8 +380,12 @@ endfunction
 
 function! elm#Lint() abort
     let currentBufferPath = expand('%:p')
-    let l:command = "elm-make --warn " . currentBufferPath . " --output /dev/null 2>&1" 
+    let l:command = "elm-make --warn --yes " . currentBufferPath . " --output /dev/null 2>&1"
 	let l:elmMakeOutput = s:ExecuteInRoot(l:command)
+    call elm#DisplayInElmWindow(l:elmMakeOutput)
+endfunction
+
+function! elm#DisplayInElmWindow(contents) abort
     let i = bufnr("$")
     let g:elmBufferExists = 0
     while (i >= 1)
@@ -389,9 +394,9 @@ function! elm#Lint() abort
         endif
         let i-=1
     endwhile
-        
+
     if !g:elmBufferExists
-        rightbelow 80vsplit __ElmMake__
+        rightbelow 80vsplit WhatElmSaid
         setlocal filetype=elmmakeoutput
         setlocal buftype=nofile
         let g:elmMakeWindowId = win_getid()
@@ -399,7 +404,7 @@ function! elm#Lint() abort
 
     if win_gotoid(g:elmMakeWindowId)
         normal! ggdG
-        call append(0, split(l:elmMakeOutput, '\v\n'))
+        call append(0, split(a:contents, '\v\n'))
         normal! gg
         wincmd w
     endif

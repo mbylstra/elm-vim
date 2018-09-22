@@ -32,8 +32,8 @@ highlight link elmMakeAnnotationWarning Number
 syntax match elmMakeSuccess "\v^Success!"
 syntax match elmMakeHide "\v^Successfully generated .*" conceal
 syntax match elmMakeNumErrors "\v^Detected errors .*"
-syntax match elmMakeColumnIndicator "\v\^" 
-syntax match elmMakeDirectory "\v(\w+\/)+"
+syntax match elmMakeColumnIndicator "\v\^"
+syntax match elmMakeDirectory "\v\/?((\w|\.|\-)+\/)+"
 syntax match elmMakeHint "\vHint\:"
 " syntax match elmLineNumber "\v^([0-9]+)\|.*"
 syntax match elmLineIndicator "\v^([0-9]+)\|\>.*"
@@ -72,6 +72,29 @@ highlight link elmFile Type
 
 " syn match elmMakeInfixFunction "\v\|\>|\<\||\>\>|\<\<|\+\+|\=\=|\/\=|\<\=|\>\=|\&\&|\|\||\+|\*|\/|\^|\/\/|\%|\!|\(\+\+\)|\:\:"
 " highlight link  elmMakeInfixFunction Statement
+
+
+" Elm Test output
+syntax match elmTestFailureHeading "TEST RUN FAILED"
+syntax match elmTestSuccessHeading "TEST RUN PASSED"
+syntax match elmTestSomePassed "^Passed:.*"
+syntax match elmTestSomeFailed "^Failed:.*"
+syntax match elmTestNonePassed "^Passed:   0"
+syntax match elmTestNoneFailed "^Failed:   0"
+syntax match elmTestDuration "^Duration:.*"
+syntax match elmTestFailingTest "^✗.*"
+syntax match elmTestExpectedPartIndicator "▲"
+syntax match elmTestUnexpectedPartIndicator "▼"
+highlight link elmTestFailureHeading WarningMsg
+highlight link elmTestSuccessHeading String
+highlight link elmTestSomeFailed WarningMsg
+highlight link elmTestSomePassed String
+highlight link elmTestNonePassed Normal
+highlight link elmTestNoneFailed Normal
+highlight link elmTestDuration Comment
+highlight link elmTestFailingTest WarningMsg
+highlight link elmTestUnexpectedPartIndicator WarningMsg
+highlight link elmTestExpectedPartIndicator String
 
 syn sync minlines=500
 
