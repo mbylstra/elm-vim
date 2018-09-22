@@ -405,3 +405,18 @@ function! elm#Lint() abort
     endif
 endfunction
 
+function! elm#VimuxRootCmd(cmd) abort
+	let l:root_dir = elm#FindRootDirectory()
+    let l:fullCmd = "cd ".l:root_dir." && ".a:cmd
+    call elm#SendToVimux(l:fullCmd)
+endfunction
+
+function! elm#SendToVimux(cmd) abort
+    " cmd = ifh VIM::evaluate("g:vimux_ruby_clear_console_on_run") != 0
+    "   "clear && "
+    " else
+    "   ''
+    " end
+    " cmd += test_command
+    call VimuxRunCommand("clear && ".a:cmd)
+endfunction
