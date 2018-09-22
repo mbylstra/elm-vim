@@ -342,13 +342,13 @@ function! elm#Test() abort
     call elm#DisplayInElmWindow(l:out)
 endf
 
-" Returns the closest parent with an elm-package.json file.
+" Returns the closest parent with an elm.json file.
 function! elm#FindRootDirectory() abort
 	let l:elm_root = getbufvar('%', 'elmRoot')
 	if empty(l:elm_root)
 		let l:current_file = expand('%:p')
 		let l:dir_current_file = fnameescape(fnamemodify(l:current_file, ':h'))
-		let l:match = findfile('elm-package.json', l:dir_current_file . ';')
+		let l:match = findfile('elm.json', l:dir_current_file . ';')
 		if empty(l:match)
 			let l:elm_root = ''
 		else
@@ -380,7 +380,7 @@ endfunction
 
 function! elm#Lint() abort
     let currentBufferPath = expand('%:p')
-    let l:command = "elm-make --warn --yes " . currentBufferPath . " --output /dev/null 2>&1"
+    let l:command = "elm make " . currentBufferPath . " --output /dev/null 2>&1"
 	let l:elmMakeOutput = s:ExecuteInRoot(l:command)
     call elm#DisplayInElmWindow(l:elmMakeOutput)
 endfunction
