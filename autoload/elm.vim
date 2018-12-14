@@ -337,7 +337,8 @@ function! elm#Test() abort
 	" else
     let l:filepath = shellescape(expand('%:p'))
     call elm#DisplayInElmWindow("Running tests...")
-    let l:out = s:ExecuteInRoot('elm-test ' . l:filepath)
+    " let l:out = s:ExecuteInRoot('elm-test ' . l:filepath)
+    let l:out = s:ExecuteInRoot('yarn elm-test-0.19 ' . l:filepath)
     " call elm#util#EchoSuccess('elm-test', l:out) "the old way
     call elm#DisplayInElmWindow(l:out)
 endf
@@ -380,9 +381,14 @@ endfunction
 
 function! elm#Lint() abort
     let currentBufferPath = expand('%:p')
-    let l:command = "/Users/michael.bylstra/code/cultureamp/murmur/node_modules/elm-0.19/bin/elm make " . currentBufferPath . " --output /dev/null 2>&1"
-	let l:elmMakeOutput = s:ExecuteInRoot(l:command)
-    call elm#DisplayInElmWindow(l:elmMakeOutput)
+    if currentBufferPath =~ "test"
+        call elm#Test()
+    else
+        let l:command = "/Users/michael.bylstra/code/cultureamp/murmur/node_modules/elm-0.19/bin/elm make " . currentBufferPath . " --output /dev/null 2>&1"
+        let l:elmMakeOutput = s:ExecuteInRoot(l:command)
+        call elm#DisplayInElmWindow(l:elmMakeOutput)
+    endif
+
 endfunction
 
 function! elm#DisplayInElmWindow(contents) abort
