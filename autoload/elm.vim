@@ -61,7 +61,7 @@ function! elm#Format() abort
 	call writefile(getline(1, '$'), l:tmpname)
 
 	" call elm-format on the temporary file
-	let l:out = system('elm-format ' . l:tmpname . ' --output ' . l:tmpname)
+	let l:out = system('elm-format --elm-version=0.19 ' . l:tmpname . ' --output ' . l:tmpname)
 
 	" if there is no error
 	if v:shell_error == 0
