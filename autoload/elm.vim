@@ -331,6 +331,9 @@ function! elm#Test() abort
 		return
 	endif
 
+    "save the test file first
+    execute ":w"
+
 	" if match(getline(1, '$'), 'consoleRunner') < 0
 	"     let l:out = s:ExecuteInRoot('elm-test')
 	"     call elm#util#EchoSuccess('elm-test', l:out)
