@@ -65,7 +65,7 @@ syn match fieldNameDeclaration "[a-z][a-zA-Z0-9_]* :" contained
 
 
 " Delimiters
-syn match elmDelimiter  "[,;]" 
+syn match elmDelimiter  "[,;]"
 syn match elmRoundBrackets "[()]" contained
 syn match elmRoundBrackets "[()]"
 
@@ -74,9 +74,6 @@ syn match elmRecordDeclarationSymbols "\v[\,\(\)\-\>]"
 syn region elmComment matchgroup=elmComment start="{-|\=" end="-}" contains=elmTodo,elmComment,@spell
 syn match elmLineComment "--.*" contains=elmTodo,@spell
 
-" hi def link elmTopLevelDecl Function
-" hi def link elmTupleFunction Normal
-" hi def link elmTodo Todo
 hi def link elmComment Comment
 hi def link elmLineComment Comment
 hi def link elmString String
@@ -87,17 +84,6 @@ hi def link elmInt Number
 hi def link elmFloat Float
 hi def link elmDelimiter Delimiter
 hi def link elmBraces Delimiter
-" hi def link elmTypedef TypeDef
-" hi def link elmLetIn Delimiter
-" hi def link elmImport Include
-" hi def link elmConditional Conditional
-" hi def link elmAlias Delimiter
-" hi def link elmOperator Operator
-" hi def link elmValueConstructor Identifier
-" hi def link elmModuleQualifier Identifier
-" hi def link elmNumberType Identifier
-" hi def link elmTest Special
-"
 
 hi def link elmFunctionDeclaration Include
 hi def link elmTypeVariable Special
