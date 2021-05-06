@@ -1,5 +1,4 @@
-" syntax highlighting for Elm (http://elm-lang.org/)
-
+" IMPORTANT NOTE: you need to use this with https://github.com/mbylstra/vim-one.git (you must use the atom one dark theme)
 if exists('b:current_syntax')
   finish
 endif
